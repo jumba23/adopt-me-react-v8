@@ -12,7 +12,6 @@ const SearchParams = () => {
     breed: "",
   });
   const [animal, setAnimal] = useState("");
-  const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
 
   const results = useQuery(["search", requestParams], fetchSearch);
@@ -43,7 +42,6 @@ const SearchParams = () => {
             name="animal"
             onChange={(e) => {
               setAnimal(e.target.value);
-              setBreed("");
             }}
           >
             <option></option>
@@ -54,14 +52,7 @@ const SearchParams = () => {
         </label>
         <label htmlFor="breed">
           Breed
-          <select
-            id="breed"
-            name="breed"
-            disabled={breeds.length === 0}
-            onChange={(e) => {
-              setBreed(e.target.value);
-            }}
-          >
+          <select id="breed" name="breed" disabled={breeds.length === 0}>
             <option></option>
             {breeds.map((breed) => (
               <option key={breed}>{breed}</option>
